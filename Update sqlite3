@@ -5,7 +5,7 @@ cursor=db.cursor()
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS cars (
             id INT PRIMARY KEY,
-            name TEXT NOT NULL,
+            name TEXT,
             car TEXT
 )""")
 
@@ -14,7 +14,7 @@ respond=input("What do you want to do?:")
 
 
 def read():
-    cursor.execute("SELECT * FROM cars")
+    cursor.execute("SELECT * FROM cars ORDER BY id")
     rows=cursor.fetchall()
 
     for row in rows:
@@ -37,7 +37,7 @@ def reg():
     cursor.execute(f"INSERT INTO cars (id,name,car) VALUES (?,?,?)",(id,name,car_name))
     db.commit()
 
-    cursor.execute("SELECT * FROM cars")
+    cursor.execute("SELECT * FROM cars ORDER BY id")
     rows=cursor.fetchall()
 
     for row in rows:
@@ -47,7 +47,7 @@ def reg():
 def delete():
     id = int(input('id:'))
 
-    cursor.execute("SELECT * FROM cars")
+    cursor.execute("SELECT * FROM cars ORDER BY id")
     rows = cursor.fetchall()
 
     for row in rows:
@@ -64,7 +64,7 @@ def update():
     cursor.execute("UPDATE cars SET car=? WHERE id=?", (new_car_name, id))
     db.commit()
 
-    cursor.execute("SELECT * FROM cars")
+    cursor.execute("SELECT * FROM cars ORDER BY id")
     rows = cursor.fetchall()
 
     for row in rows:
