@@ -5,7 +5,7 @@ cursor=db.cursor()
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS cars (
             id INT PRIMARY KEY,
-            name TEXT,
+            name TEXT NOT NULL,
             car TEXT
 )""")
 
