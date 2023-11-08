@@ -9,9 +9,21 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS cars (
             car TEXT
 )""")
 
-print(' Choose only one: READ | DELETE | INSERT | SORT')
+print(' Choose only one: READ | DELETE | INSERT | SORT | CHOOSE ')
 respond=input("What do you want to do?:")
 
+
+def choice():
+    id=int(input('id:'))
+
+    cursor.execute("SELECT * FROM cars WHERE id=?",(id,))
+
+    row=cursor.fetchone()
+
+    if row:
+        print(row)
+    else:
+        print('Not found 404')
 
 def read():
     cursor.execute("SELECT * FROM cars ORDER BY id")
@@ -81,6 +93,8 @@ if __name__=='__main__':
         sort()
     elif respond == 'READ':
         read()
+    elif respond == 'CHOOSE':
+        choice()
         
 
 db.close()
