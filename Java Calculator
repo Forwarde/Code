@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Введите ваш возраст");
+        double age=scanner.nextInt(); // можно так же использовать int но для точного вычисление я использовал double
+        
+        System.out.println("Hello world!," + age);
+        
+        System.out.println("Введите еще число:");
+        double x = scanner.nextInt(); // можно так же использовать int но для точного вычисление я использовал double
+        System.out.println("Число:" + x);
+        
+        System.out.println(age + x);
+        
+        System.out.println("Выбери что то (*,/)");
+        String operation = scanner.next();
+        
+        
+        if (operation.equals("/")) {
+            System.out.println("Результат деления: " + (age / x)); // Убедитесь, что x не равно 0, чтобы избежать деления на ноль
+        } else if (operation.equals("*")) {
+            System.out.println("Результат умножения: " + (age * x));
+        } else {
+            System.out.println("Неизвестная операция");
+        }
+        
+        scanner.close();
+    }
+}
